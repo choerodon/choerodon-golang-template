@@ -23,16 +23,16 @@ spec:
         - name: {{ .Release.Name }}
           image: "{{ .Values.image.repository }}:{{ .Chart.Version }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-      ports:
-        - name: http
-          containerPort: {{ .Values.config.port }}
-          protocol: TCP
-      resources:
+          ports:
+          - name: http
+            containerPort: {{ .Values.config.port }}
+            protocol: TCP
+          resources:
 {{ toYaml .Values.resources | indent 12 }}
-dnsPolicy: ClusterFirst
-restartPolicy: Always
-schedulerName: default-scheduler
-securityContext: {}
-terminationGracePeriodSeconds: 30
-revisionHistoryLimit: 3
-minReadySeconds: 0
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  revisionHistoryLimit: 3
+  minReadySeconds: 0
